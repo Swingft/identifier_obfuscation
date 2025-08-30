@@ -3,3 +3,4 @@ todo.txt
 id.py
 __pycache__/
 remove_standard_var/
+.DS_Store
