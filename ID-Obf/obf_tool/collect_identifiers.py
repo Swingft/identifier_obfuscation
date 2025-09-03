@@ -94,5 +94,10 @@ def collect_identifiers():
                 IDENTIFIER["variable"] = set()
             IDENTIFIER["variable"].update(IDENTIFIER["case"])
             del IDENTIFIER["case"]
+        if "actor" in IDENTIFIER:
+            if "class" not in IDENTIFIER:
+                IDENTIFIER["class"] = set()
+            IDENTIFIER["class"].update(IDENTIFIER["actor"])
+            del IDENTIFIER["actor"]
 
         return IDENTIFIER, ALL_IDENTIFIER

@@ -27,14 +27,19 @@ def find_external_library(project_root):
     
 
     # 프로젝트 파일 외부 경로
+    is_find = False
     derived_data = os.path.expanduser("~/Library/Developer/Xcode/DerivedData/")
     project_names = get_project_name(project_root)
     if os.path.isdir(derived_data):
         for item in os.listdir(derived_data):
+            if is_find:
+                break
             for name in project_names:
                 if item.startswith(name + "-"):
                     derived_path = os.path.join(derived_data, item, "SourcePackages", "checkouts")
                     dir_paths.add(derived_path)
+                    is_find = True
+                    break
    
     # .swift 파일 수집 및 저장
     for dir_path in dir_paths:

@@ -147,12 +147,12 @@ def import_info_parser(path):
             name = child.get("name")
             if name.startswith(f"{root_name}.") or name.startswith("_"):
                 continue
-            decl_attr = child.get("declAttributes", [])
-            if "Exported" in decl_attr:
-                re_import_list.add(name)
+            # decl_attr = child.get("declAttributes", [])
+            # if "Exported" in decl_attr:
+            #     re_import_list.add(name)
+            re_import_list.add(name)
 
     return re_import_list
-    
 
 def find_standard_sdk():
     digester_path, sdk_path = find_path()
