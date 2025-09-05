@@ -17,7 +17,14 @@ def tagging_string(source_code, name):
         new_line = ""
         idx = 0
         in_string = False  
-
+        
+        if "import " in line:
+            words = line.strip().split()
+            tagging_words = [f"team_ufo_swingft{w}" for w in words]
+            new_line = " ".join(tagging_words)
+            new_source_code += new_line + "\n"
+            continue
+        
         while idx < len(line):
             char = line[idx]
 
