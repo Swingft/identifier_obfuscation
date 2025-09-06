@@ -2,6 +2,7 @@ import subprocess
 import sys
 import shutil
 import os
+from merge_list import merge_llm_and_rule
 
 def run_command(cmd):
     result = subprocess.run(cmd, capture_output=True, text=True)
@@ -15,11 +16,16 @@ def main():
     original_dir = os.getcwd()   
     code_project_dir = sys.argv[1]
 
+    # 1차 Rule-based
     ast_dir = os.path.join(original_dir, "AST-Code")
     os.chdir(ast_dir)
     cmd = ["python3", "main.py", code_project_dir]
     run_command(cmd)
 
+    # Rule & LLM 결과 병합
+    merge_llm_and_rule()
+
+    # ID-obfuscation
     obf_dir = os.path.join(original_dir, "ID-Obf")
     os.chdir(obf_dir)
     cmd = ["python3", "main.py"]
